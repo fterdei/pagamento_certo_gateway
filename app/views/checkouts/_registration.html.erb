@@ -29,6 +29,10 @@
     <div id="new_user">
       <h3><%= t("create_user_account") %></h3>
     	<p>
+  	  <label for="Nome">Nome</label>
+      	  <%= text_field :user, 'nome', :class => 'required' -%><span class="req">*</span>
+      	</p>
+    	<p>
   	  <label for="<%= t("email") %>"><%= t("email") %></label>
       	  <%= text_field :user, 'email', :class => 'required' -%><span class="req">*</span>
       	</p>
@@ -42,33 +46,29 @@
       	</p>
     <p>
       <input id="choose_fisica" type="radio" name="type" value="fisica" />
-      <label for="choose_fisica"><%= t("fisica") %></label>
+      <label for="choose_fisica">Pessoa Física</label>
     </p>
     <p>
       <input id="choose_juridica" type="radio" name="type" value="juridica"/>
-      <label for="choose_juridica"><%= t("juridica") %></label>
+      <label for="choose_juridica">Pessoa Jurídica</label>
     </p>
       	<p>
-      	  <label for="<%= t("cpf") %>"><%= t("cpf") %></label>
-      	  <%= password_field :user, 'cpf' %>
+      	  <label for="CPF">CPF</label>
+      	  <%= text_field :user, 'cpf' %>
       	</p>
       	<p>
-      	  <label for="<%= t("rg") %>"><%= t("rg") %></label>
-      	  <%= password_field :user, 'rg'%>
+      	  <label for="RG">RG</label>
+      	  <%= text_field :user, 'rg'%>
       	</p>
       	<p>
-      	  <label for="<%= t("razao_social") %>"><%= t("razao_social") %></label>
-      	  <%= password_field :user, 'razao_social'%>
+      	  <label for="Razão Social%>">Razão Social</label>
+      	  <%= text_field :user, 'razao_social'%>
       	</p>
       	<p>
-      	  <label for="<%= t("cnpj") %>"><%= t("cnpj") %></label>
-      	  <%= password_field :user, 'cnpj'%>
+      	  <label for="CNPJ">CNPJ</label>
+      	  <%= text_field :user, 'cnpj'%>
       	</p>
-      	      	<p>
-      	  <label for="<%= t("cnpj") %>"><%= t("cnpj") %></label>
-      	  <%= password_field :user, 'cnpj'%>
-      	</p>
-      </div>
+     </div>
     </div>
   <div id="already_logged_in"><p>You are already logged in.</p></div>
   <div class="form-buttons">

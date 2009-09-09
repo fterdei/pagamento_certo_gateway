@@ -14,13 +14,12 @@ class PagamentoCertoGatewayExtension < Spree::Extension
 
   def activate
     CheckoutsHelper.class_eval do
-      alias :checkout_steps_alias :checkout_steps
-      def checkout_steps
-        checkout_steps = checkout_steps_alias
-        chechout_steps.delete "payment"
+       def checkout_steps
+        checkout_steps = %w{registration billing shipping shipping_method confirmation}
+        checkout_steps.delete "registration" if current_user
         checkout_steps
       end
-    end
+   end
 
   end
 end
