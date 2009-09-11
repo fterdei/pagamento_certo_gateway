@@ -10,6 +10,7 @@ class PagamentoCertoGatewayExtension < Spree::Extension
 
  def self.require_gems(config)
    config.gem "akitaonrails-lw-pagto-certo", :lib => 'lw-pagto-certo', :source => 'http://gems.github.com', :version => '>=0.0.5'
+   config.gem 'activerecord-tableless', :lib => 'tableless', :version => '>=0.1.0'
  end
 
   def activate
