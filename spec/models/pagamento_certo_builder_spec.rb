@@ -50,8 +50,10 @@ describe PagamentoCertoBuilder do
     }
     @pagamento_certo_builder.should_receive(:lw_pagto_certo).with("http://locaweb.com.br").and_return(@lw)
     @lw.should_receive(:comprador=).with(hash_including(comprador_fisica))
+    @lw.stub!(:pagamento=)
+    @lw.stub!(:pedido=)
     
-    @pagamento_certo_builder.fill_comprador @order.user
+    @pagamento_certo_builder.build @order, "http://locaweb.com.br"
   end
   
   it "should fill order informations with comprador juridica" do
@@ -67,14 +69,18 @@ describe PagamentoCertoBuilder do
     }
     @pagamento_certo_builder.should_receive(:lw_pagto_certo).with("http://locaweb.com.br").and_return(@lw)
     @lw.should_receive(:comprador=).with(hash_including(comprador_juridica))
-    @pagamento_certo_builder.fill_comprador @order.user
+    @lw.stub!(:pagamento=)
+    @lw.stub!(:pedido=)
+    @pagamento_certo_builder.build @order, "http://locaweb.com.br"
   end
   
   it "should fill order informations with pagamento" do
     pagamento = { :Modulo => "Boleto"}
     @pagamento_certo_builder.should_receive(:lw_pagto_certo).with("http://locaweb.com.br").and_return(@lw)    
+    @lw.stub!(:comprador=)
+    @lw.stub!(:pedido=)
     @lw.should_receive(:pagamento=).with(pagamento)
-    @pagamento_certo_builder.fill_pagamento
+    @pagamento_certo_builder.build @order, "http://locaweb.com.br"  
   end
 
   # it "should fill order informations with pedidos" do
