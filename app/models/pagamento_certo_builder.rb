@@ -55,6 +55,7 @@ class PagamentoCertoBuilder < ActiveRecord::Base
              :ValorUnitario => (order.line_items.first.price.to_f * 100).to_i,
              :ValorTotal    => (order.line_items.first.quantity * order.line_items.first.price.to_f * 100).to_i,
           },
+          
       },
       :Cobranca => {
         :Endereco => order.bill_address.address1,

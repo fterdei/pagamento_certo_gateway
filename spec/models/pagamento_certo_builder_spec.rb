@@ -24,7 +24,7 @@ describe PagamentoCertoBuilder do
                                :bill_address => @address, :shipment => @shipment,
                                :adjustment_total => 1.0
     @pagamento_certo_builder = PagamentoCertoBuilder.new
-    
+  
   end
 
   it "should give me an instance of lwpagtocerto" do
