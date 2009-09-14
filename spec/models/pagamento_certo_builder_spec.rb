@@ -28,7 +28,7 @@ describe PagamentoCertoBuilder do
     @pagamento_certo_builder.lw_pagto_certo.should == @lw
   end
 
-  it "should fill order informations" do
+  it "should fill order informations with comprador fisica" do
     comprador_fisica = {
       :Nome => "Fabiane",
       :Email => "fabiane.erdei@locaweb.com.br",
@@ -44,4 +44,25 @@ describe PagamentoCertoBuilder do
     @lw.stub!(:pedido=)
     @pagamento_certo_builder.build @order, "http://locaweb.com.br"
   end
+  
+  it "should fill order informations with comprador juridica" do
+    comprador_juridica = {
+      :Nome => "Fabiane",
+      :Email => "fabiane.erdei@locaweb.com.br",
+      :Cpf => "88823923423",
+      :Rg => "123456780",
+      :Ddd => "11",
+      :Telefone => "35440444",
+      :TipoPessoa => "Juridica",
+      :RazaoSocial => "Empresa da Fabiane",
+      :Cnpj        => "0010090020000199"
+      
+    }
+    @pagamento_certo_builder.should_receive(:lw_pagto_certo).with("http://locaweb.com.br").and_return(@lw)
+    @lw.should_receive(:comprador=).with(hash_including(comprador_juridica))
+    @lw.stub!(:pagamento=)
+    @lw.stub!(:pedido=)
+    @pagamento_certo_builder.build @order, "http://locaweb.com.br"
+  end
+  
 end

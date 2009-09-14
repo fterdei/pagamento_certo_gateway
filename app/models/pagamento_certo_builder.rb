@@ -26,8 +26,8 @@ class PagamentoCertoBuilder < ActiveRecord::Base
       :Ddd         => "11",
       :Telefone    => "35440444",
       :TipoPessoa  => "Fisica",
-      # :RazaoSocial => "",
-      # :Cnpj        => "",
+      :RazaoSocial => "Empresa da Fabiane",
+      :Cnpj        => "0010090020000199"
     }
   end
   
