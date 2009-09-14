@@ -36,7 +36,6 @@ class PagamentoCertoBuilder < ActiveRecord::Base
   def fill_pagamento
     @lw.pagamento = {
       :Modulo => "Boleto"
-      # :Tipo => "Visa",
     }
   end
   
@@ -44,9 +43,9 @@ class PagamentoCertoBuilder < ActiveRecord::Base
     @lw.pedido = {
       :Numero => order.number,
       :ValorSubTotal  => (order.total * 100).to_i,
-      :ValorFrete     => "000",
-      :ValorAcrescimo => "000",
-      :ValorDesconto  => "000",
+      :ValorFrete     => order.shipment.cost,
+      :ValorAcrescimo => (order.adjustment_total > 0 ? order.adjustment_total : 0),
+      :ValorDesconto  => (order.adjustment_total < 0 ? - order.adjustment_total : 0),
       :ValorTotal     => (order.total * 100).to_i,
       :Itens => {
           :Item => {
@@ -59,19 +58,19 @@ class PagamentoCertoBuilder < ActiveRecord::Base
       },
       :Cobranca => {
         :Endereco => order.bill_address.address1,
-        :Numero   => "123",
-        :Bairro   => "Foo",
+        :Numero   => order.bill_address.number,
+        :Bairro   => order.bill_address.neighborhood,
         :Cidade   => order.bill_address.city,
         :Cep      => order.bill_address.zipcode.to_s,
-        :Estado   => 'SP',
+        :Estado   => order.bill_address.state.abbr,
       },
       :Entrega => {
         :Endereco => order.shipment.address.address1,
-        :Numero   => "123",
-        :Bairro   => "Foo",
+        :Numero   => order.shipment.address.number,
+        :Bairro   => order.shipment.address.neighborhood,
         :Cidade   => order.shipment.address.city,
         :Cep      => order.shipment.address.zipcode.to_s,
-        :Estado   => 'SP',
+        :Estado   => order.shipment.address.state.abbr,
       },
     }
     # i = 1

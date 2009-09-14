@@ -15,11 +15,14 @@ describe PagamentoCertoBuilder do
                              :person_type => "Fisica",
                              :razao_social => "Empresa da Fabiane",
                              :cnpj => "0123456789"
-    @address = mock_model Address, :address1 => "Rua X", :city => "SP", :zipcode => "01234567"
+    @state = mock_model State, :abbr => "SP"
+    @address = mock_model Address, :address1 => "Rua X", :city => "SP", :zipcode => "01234567", 
+                                   :number => "123", :neighborhood => "Itaim", :state => @state
     @line_item = mock_model LineItem, :product => @product, :quantity => 1, :price => 121.00, :variant => @variant
-    @shipment = mock_model Shipment, :address => @address
+    @shipment = mock_model Shipment, :address => @address, :cost => 2.0
     @order = mock_model Order, :user => @user, :number => 1, :total => 12.0, :line_items => [@line_item],
-                               :bill_address => @address, :shipment => @shipment
+                               :bill_address => @address, :shipment => @shipment,
+                               :adjustment_total => 1.0
     @pagamento_certo_builder = PagamentoCertoBuilder.new
     
   end
