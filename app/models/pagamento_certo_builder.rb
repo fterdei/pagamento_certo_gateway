@@ -4,12 +4,20 @@ class PagamentoCertoBuilder < ActiveRecord::Base
   def lw_pagto_certo(url = nil)
     gateway = Gateway.find_by_name("Pagamento Certo")
     gateway_option = gateway.gateway_options.first
-    @lw = LwPagtoCerto.new(:chave_vendedor => gateway_option.gateway_option_values.first.value, :url_retorno => url)
+    LwPagtoCerto.new(:chave_vendedor => gateway_option.gateway_option_values.first.value, :url_retorno => url)
   end
 
-
   def build(order, url)
-    lw_pagto_certo(url)
+    @lw = lw_pagto_certo(url)
+    
+    fill_comprador order
+    fill_pagamento
+    fill_pedido order
+    @lw
+  end
+ 
+ private 
+  def fill_comprador(order)
     @lw.comprador = {
       :Nome        => order.user.login,
       :Email       => "fabiane.erdei@locaweb.com.br",
@@ -21,10 +29,16 @@ class PagamentoCertoBuilder < ActiveRecord::Base
       # :RazaoSocial => "",
       # :Cnpj        => "",
     }
+  end
+  
+  def fill_pagamento
     @lw.pagamento = {
       :Modulo => "Boleto"
       # :Tipo => "Visa",
     }
+  end
+  
+  def fill_pedido(order)
     @lw.pedido = {
       :Numero => order.number,
       :ValorSubTotal  => (order.total * 100).to_i,
@@ -58,6 +72,5 @@ class PagamentoCertoBuilder < ActiveRecord::Base
         :Estado   => 'SP',
       },
     }
-    @lw
   end
 end
