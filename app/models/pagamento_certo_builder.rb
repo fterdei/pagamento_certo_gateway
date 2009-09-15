@@ -1,5 +1,7 @@
 class PagamentoCertoBuilder < ActiveRecord::Base
   has_no_table
+  
+  attr_accessor :lw
 
   def lw_pagto_certo(url = nil)
     gateway = Gateway.find_by_name("Pagamento Certo")
@@ -43,20 +45,10 @@ class PagamentoCertoBuilder < ActiveRecord::Base
     @lw.pedido = {
       :Numero => order.number,
       :ValorSubTotal  => (order.total * 100).to_i,
-      :ValorFrete     => order.shipment.cost,
-      :ValorAcrescimo => (order.adjustment_total > 0 ? order.adjustment_total : 0),
-      :ValorDesconto  => (order.adjustment_total < 0 ? - order.adjustment_total : 0),
-      :ValorTotal     => (order.total * 100).to_i,
-      :Itens => {
-          :Item => {
-             :CodProduto    => order.line_items.first.product.id,
-             :DescProduto   => order.line_items.first.product.name,
-             :Quantidade    => order.line_items.first.quantity,
-             :ValorUnitario => (order.line_items.first.price.to_f * 100).to_i,
-             :ValorTotal    => (order.line_items.first.quantity * order.line_items.first.price.to_f * 100).to_i,
-          },
-          
-      },
+      :ValorFrete     => (order.shipment.cost * 100).to_i,
+      :ValorAcrescimo => ((order.adjustment_total > 0 ? order.adjustment_total : 0) * 100).to_i,
+      :ValorDesconto  => ((order.adjustment_total < 0 ? - order.adjustment_total : 0) * 100).to_i,
+      :ValorTotal     => ((order.total + order.shipment.cost + order.adjustment_total) * 100).to_i,
       :Cobranca => {
         :Endereco => order.bill_address.address1,
         :Numero   => order.bill_address.number,
@@ -74,10 +66,16 @@ class PagamentoCertoBuilder < ActiveRecord::Base
         :Estado   => order.shipment.address.state.abbr,
       },
     }
-    # i = 1
-    # order.line_items.each do |item|
-    #   @lw.pedido[:Itens][:"Item_#{i}"] = {:CodProduto => item.variant.product.id}
-    #   i += 1
-    # end
+    i = 1
+    order.line_items.each do |item|
+      @lw.pedido[:Itens][:"Item_#{i}"] = {
+        :CodProduto    => item.product.id,
+        :DescProduto   => item.product.name,
+        :Quantidade    => item.quantity,
+        :ValorUnitario => item.variant ? (item.variant.price.to_f * 100).to_i : (item.price.to_f * 100).to_i,
+        :ValorTotal    => item.variant ? (item.quantity * item.variant.price.to_f * 100).to_i : (item.quantity * item.price.to_f * 100).to_i
+      }
+      i += 1
+    end
   end
 end
