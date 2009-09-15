@@ -48,7 +48,7 @@ class PagamentoCertoBuilder < ActiveRecord::Base
       :ValorFrete     => "%03d" % (order.shipment.charge.amount.to_f * 100),
       :ValorAcrescimo => "000",
       :ValorDesconto  => "%03d" % ((order.adjustment_total < 0 ? - order.adjustment_total * 100 : 0)),
-      :ValorTotal     => ((order.item_total + order.shipment.charge.amount.to_f + order.adjustment_total) * 100).to_i,
+      :ValorTotal     => ((order.total) * 100).to_i,
       :Itens => Hash.new,
       :Cobranca => {
         :Endereco => order.bill_address.address1,

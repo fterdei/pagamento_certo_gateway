@@ -133,10 +133,11 @@ describe PagamentoCertoBuilder do
     @shipment = mock_model Shipment, :address => @address, :charge => @charge
     @order = mock_model Order, :user => @user, 
                                :number => 1, 
-                               :total => 121.00, 
+                               :item_total => 121.00, 
                                :line_items => [@line_item],
                                :bill_address => @address, 
                                :shipment => @shipment,
+                               :total => 124.00,
                                :adjustment_total => 1.0
     @pagamento_certo_builder = PagamentoCertoBuilder.new
   end
