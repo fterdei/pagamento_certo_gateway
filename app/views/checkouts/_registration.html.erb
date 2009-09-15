@@ -62,11 +62,11 @@
       	  <%= password_field :user, 'password_confirmation', :class => 'required' %><span class="req">*</span>
       	</p>
 		    <p>
-		      <input id="choose_fisica" name="tipo_pessoa" type="radio" name="type" value="fisica" onclick="changePessoalType();" selected="selected"/>
+		      <input id="choose_fisica" name="user[person_type]" type="radio" name="type" value="Fisica" onclick="changePessoalType();" selected="selected"/>
 		      <label for="choose_fisica">Pessoa Física</label>
 		    </p>
 		    <p>
-		      <input id="choose_juridica" name="tipo_pessoa" type="radio" name="type" value="juridica" onclick="changePessoalType();" />
+		      <input id="choose_juridica" name="user[person_type]" type="radio" name="type" value="Juridica" onclick="changePessoalType();" />
 		      <label for="choose_juridica">Pessoa Jurídica</label>
 		    </p>
 				<div id="pessoa_fisica_data">

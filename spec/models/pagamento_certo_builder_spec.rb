@@ -81,7 +81,7 @@ describe PagamentoCertoBuilder do
       :Numero => 1,
       :ValorSubTotal  => 12100,
       :ValorFrete     => "200",
-      :ValorAcrescimo => "100",
+      :ValorAcrescimo => "000",
       :ValorDesconto  => "000",
       :ValorTotal     => 12400,
       :Itens => Hash.new,
