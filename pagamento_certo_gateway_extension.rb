@@ -14,6 +14,14 @@ class PagamentoCertoGatewayExtension < Spree::Extension
   end
 
   def activate
+    User.class_eval do 
+        attr_accessible :email,                 :password, 
+                        :password_confirmation, :name, 
+                        :cpf,                   :rg,  
+                        :razao_social,          :person_type, 
+                        :code_area,             :phone
+    end
+    
     CheckoutsHelper.class_eval do
       alias :checkout_steps_alias :checkout_steps
       def checkout_steps
@@ -47,6 +55,8 @@ class PagamentoCertoGatewayExtension < Spree::Extension
          @pagamento_certo_builder = PagamentoCertoBuilder.new
          @lw = @pagamento_certo_builder.build(@order, url_for(:controller => "checkouts", :action => "close", :order => @order))
          consulta = @lw.inicia
+         logger = Logger.new(STDOUT)
+         logger.error(consulta)
          redirect_to "https://www.pagamentocerto.com.br/pagamento/pagamento.aspx?tdi=#{consulta[:id_transacao]} "
        end
 
@@ -64,7 +74,7 @@ class PagamentoCertoGatewayExtension < Spree::Extension
   end
 end
 
-
+# A396813-AE9A-4C36-98A4-C03F4AC325A3
 
 
 

@@ -80,10 +80,11 @@ describe PagamentoCertoBuilder do
     pedido = {
       :Numero => 1,
       :ValorSubTotal  => 12100,
-      :ValorFrete     => 200,
-      :ValorAcrescimo => 100,
-      :ValorDesconto  => 0,
+      :ValorFrete     => "200",
+      :ValorAcrescimo => "100",
+      :ValorDesconto  => "000",
       :ValorTotal     => 12400,
+      :Itens => Hash.new,
       :Cobranca => {
         :Endereco => "Rua X",
         :Numero   => "123",
@@ -128,7 +129,8 @@ describe PagamentoCertoBuilder do
                                       :quantity => 1, 
                                       :price => 121.00, 
                                       :variant => @variant
-    @shipment = mock_model Shipment, :address => @address, :cost => 2.0
+    @charge = mock_model Charge, :amount => 2.0
+    @shipment = mock_model Shipment, :address => @address, :charge => @charge
     @order = mock_model Order, :user => @user, 
                                :number => 1, 
                                :total => 121.00, 

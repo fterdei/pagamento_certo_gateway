@@ -45,10 +45,11 @@ class PagamentoCertoBuilder < ActiveRecord::Base
     @lw.pedido = {
       :Numero => order.number,
       :ValorSubTotal  => (order.total * 100).to_i,
-      :ValorFrete     => (order.shipment.cost * 100).to_i,
-      :ValorAcrescimo => ((order.adjustment_total > 0 ? order.adjustment_total : 0) * 100).to_i,
-      :ValorDesconto  => ((order.adjustment_total < 0 ? - order.adjustment_total : 0) * 100).to_i,
-      :ValorTotal     => ((order.total + order.shipment.cost + order.adjustment_total) * 100).to_i,
+      :ValorFrete     => "%03d" % (order.shipment.charge.amount.to_f * 100),
+      :ValorAcrescimo => "%03d" % ((order.adjustment_total > 0 ? order.adjustment_total * 100 : 0)),
+      :ValorDesconto  => "%03d" % ((order.adjustment_total < 0 ? - order.adjustment_total * 100 : 0)),
+      :ValorTotal     => ((order.total + order.shipment.charge.amount.to_f + order.adjustment_total) * 100).to_i,
+      :Itens => Hash.new,
       :Cobranca => {
         :Endereco => order.bill_address.address1,
         :Numero   => order.bill_address.number,
@@ -68,6 +69,7 @@ class PagamentoCertoBuilder < ActiveRecord::Base
     }
     i = 1
     order.line_items.each do |item|
+      # @lw.pedido
       @lw.pedido[:Itens][:"Item_#{i}"] = {
         :CodProduto    => item.product.id,
         :DescProduto   => item.product.name,
