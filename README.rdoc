@@ -13,26 +13,23 @@ Modifica o processo de checkout para utilizar automaticamente o serviço Pagamen
 
 == INSTALL:
 
-  Depois de baixar o Spree, execute o comando:
-
+Depois de baixar o Spree, execute o comando:
   rake db:bootstrap
 
-  Em seguida, instale a extension usando o comando:
-
+Em seguida, instale a extension usando o comando:
   script/extension install git://github.com/fterdei/pagamento_certo_gateway.git
 
-  Para finalizar:
-
+Para finalizar:
   rake db:migrate
 
 == CONFIGURANDO
 
-  No painel administrativo do Spree vá até a aba "Configuration", e depois no item "Gateway",
-  escolha como gateway de pagamento "Pagamento Certo" e coloque sua chave de vendedor
-  no campo apropriado, clicando em "Update" para salvar a informação.
+No painel administrativo do Spree vá até a aba "Configuration", e depois no item "Gateway",
+escolha como gateway de pagamento "Pagamento Certo" e coloque sua chave de vendedor
+no campo apropriado, clicando em "Update" para salvar a informação.
 
-  O Pagamento Certo somente tem suporte ao mercado brasileiro, portanto você precisa configurar
-  os estados brasileiros no item "States" da aba "Configuration".
+O Pagamento Certo somente tem suporte ao mercado brasileiro, portanto você precisa configurar
+os estados brasileiros no item "States" da aba "Configuration".
 
 == USANDO O PAGAMENTO CERTO DA LOCAWEB
 
