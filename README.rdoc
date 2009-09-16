@@ -12,16 +12,21 @@ Modifica o processo de checkout para utilizar automaticamente o serviço Pagamen
 * activerecord-tableless
 
 == INSTALL:
+
   Depois de baixar o Spree, execute o comando:
+
   rake db:bootstrap
 
   Em seguida, instale a extension usando o comando:
+
   script/extension install git://github.com/fterdei/pagamento_certo_gateway.git
 
   Para finalizar:
+
   rake db:migrate
 
 == CONFIGURANDO
+
   No painel administrativo do Spree vá até a aba "Configuration", e depois no item "Gateway",
   escolha como gateway de pagamento "Pagamento Certo" e coloque sua chave de vendedor
   no campo apropriado, clicando em "Update" para salvar a informação.
