@@ -141,5 +141,4 @@ describe PagamentoCertoBuilder do
                                :adjustment_total => 1.0
     @pagamento_certo_builder = PagamentoCertoBuilder.new
   end
-  
 end

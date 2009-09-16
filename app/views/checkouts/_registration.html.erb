@@ -62,18 +62,26 @@
       	  <%= password_field :user, 'password_confirmation', :class => 'required' %><span class="req">*</span>
       	</p>
 		    <p>
-		      <input id="choose_fisica" name="user[person_type]" type="radio" name="type" value="Fisica" onclick="changePessoalType();" selected="selected"/>
+		      <input id="choose_fisica" name="user[person_type]" type="radio" name="type" value="Fisica" onclick="changePessoalType();" checked="true" />
 		      <label for="choose_fisica">Pessoa Física</label>
-		    </p>
-		    <p>
+				</p>
+				<p>
 		      <input id="choose_juridica" name="user[person_type]" type="radio" name="type" value="Juridica" onclick="changePessoalType();" />
 		      <label for="choose_juridica">Pessoa Jurídica</label>
 		    </p>
+		   	<p>
+		   	  <label for="CPF">CPF</label>
+		   	  <%= text_field :user, 'cpf', :class => 'required' %><span class="req">*</span>
+		   	</p>
+				<p>
+		   	  <label for="DDD">DDD</label>
+		   	  <%= text_field :user, 'code_area', :class => 'required' %><span class="req">*</span>
+		   	</p>
+			  <p>
+		   	  <label for="Fone">Fone</label>
+		   	  <%= text_field :user, 'phone', :class => 'required' %><span class="req">*</span>
+		   	</p>
 				<div id="pessoa_fisica_data">
-			   	<p>
-			   	  <label for="CPF">CPF</label>
-			   	  <%= text_field :user, 'cpf' %>
-			   	</p>
 			   	<p>
 			   	  <label for="RG">RG</label>
 			   	  <%= text_field :user, 'rg'%>
@@ -88,17 +96,8 @@
 			   	  <label for="CNPJ">CNPJ</label>
 			   	  <%= text_field :user, 'cnpj'%>
 			   	</p>
-				</div>
-				<p>
-		   	  <label for="DDD">DDD</label>
-		   	  <%= text_field :user, 'code_area'%>
-		   	</p>
-			  <p>
-		   	  <label for="Fone">Fone</label>
-		   	  <%= text_field :user, 'phone'%>
-		   	</p>
-			  
-     </div>
+				</div>					  
+      </div>
     </div>
   <div id="already_logged_in"><p>You are already logged in.</p></div>
   <div class="form-buttons">

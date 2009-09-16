@@ -15,16 +15,8 @@ class PagamentoCertoGatewayExtension < Spree::Extension
 
   def activate
     User.class_eval do 
-        attr_accessible :email,                 
-                        :password, 
-                        :password_confirmation, 
-                        :name, 
-                        :cpf,                  
-                        :rg,  
-                        :razao_social,        
-                        :person_type, 
-                        :code_area,
-                        :phone
+        attr_accessible :email, :password, :password_confirmation, :name, :cpf, :rg,  
+                        :razao_social, :person_type, :code_area,  :phone
     end
     
     CheckoutsHelper.class_eval do
@@ -76,8 +68,6 @@ class PagamentoCertoGatewayExtension < Spree::Extension
 
   end
 end
-
-# A396813-AE9A-4C36-98A4-C03F4AC325A3
 
 
 

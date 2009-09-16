@@ -1,0 +1,71 @@
+<script>
+ function changePessoalType(){
+		if($('#choose_fisica').is(":checked")){
+			showFisica();
+		}else{
+			showJuridica();
+		}
+ }
+	function showFisica(){
+		$('#pessoa_juridica_data').hide();
+			$('#pessoa_fisica_data').show();
+	}
+	function showJuridica(){
+		$('#pessoa_fisica_data').hide();
+		$('#pessoa_juridica_data').show();
+	}
+</script>
+<p>
+	<label for="<%= t("name") %>"><%= t("name") %></label><br />
+  <%= text_field :user, 'name', :class => 'title' -%>
+</p>
+<p>
+  <label for="<%= t("email") %>"><%= t("email") %></label><br />
+  <%= f.text_field :email, :class => 'title'  %>
+</p>
+
+<p>
+  <label for="<%= t("password") %>"><%= t("password") %></label><br />
+  <%= f.password_field :password, :class => 'title'  %>
+</p>
+
+<p>
+  <label for="<%= t("password") %>"><%= t("confirm") %></label><br />
+  <%= f.password_field :password_confirmation, :class => 'title' %>
+</p>
+<p>
+  <input id="choose_fisica" name="user[person_type]" type="radio" name="type" value="Fisica" onclick="changePessoalType();"  checked="true"/>
+  <label for="choose_fisica">Pessoa Física</label>
+  <input id="choose_juridica" name="user[person_type]" type="radio" name="type" value="Juridica" onclick="changePessoalType();" />
+  <label for="choose_juridica">Pessoa Jurídica</label>
+</p>
+<p>
+  <label for="CPF">CPF</label><br />
+  <%= text_field :user, 'cpf', :class => 'title'%>
+</p>
+<p>
+  <label for="DDD">DDD</label><br />
+  <%= text_field :user, 'code_area', :class => 'title', :maxlength => "5"%>
+</p>
+<p>
+  <label for="Fone">Fone</label><br />
+  <%= text_field :user, 'phone', :class => 'title'%>
+</p>			  
+<div id="pessoa_fisica_data">
+ 	<p>
+ 	  <label for="RG">RG</label><br />
+ 	  <%= text_field :user, 'rg', :class => 'title' %>
+ 	</p>
+</div>
+<div id="pessoa_juridica_data" style="display: none;">
+	<p>
+	  <label for="Razão Social%>">Razão Social</label><br />
+	  <%= text_field :user, 'razao_social', :class => 'title'%>
+	</p>
+	<p>
+	  <label for="CNPJ">CNPJ</label><br />
+	  <%= text_field :user, 'cnpj', :class => 'title'%>
+	</p>
+</div>
+
+<%= render_extra_partials f %>
