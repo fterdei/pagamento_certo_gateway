@@ -47,6 +47,4 @@ http://wiki.locaweb.com.br/pt-br/Informacoes_uteis_ao_vendedor
 ((<Extension Pagamento Certo Gateway Spree|http://ext.spreecommerce.com/extensions/34-pagamento-certo-gateway>))
 
 
-
-
-
+{demo app}[http://github.com/neworganizing/rails_vip_demo]
