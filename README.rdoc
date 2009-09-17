@@ -1,6 +1,6 @@
 = pagamento-certo-gateway
 
-* Extension para integração do ((Spree|http://spreecommerce.com)) com o serviço Pagamento Certo da Locaweb
+* Extension para integração do {Spree} [http://spreecommerce.com] com o serviço Pagamento Certo da Locaweb
 
 
 == DESCRIÇÃO:
@@ -42,9 +42,6 @@ chave única, secreta, que o identifica como vendedor. Mais informações você 
 http://wiki.locaweb.com.br/pt-br/Informacoes_uteis_ao_vendedor
 
 == PROJETO PRINCIPAL
-((Spree Open Source E-Commerce for Ruby on Rails | http://spreecommerce.com))
+{Spree Open Source E-Commerce for Ruby on Rails}[http://spreecommerce.com]
 
-((<Extension Pagamento Certo Gateway Spree|http://ext.spreecommerce.com/extensions/34-pagamento-certo-gateway>))
-
-
-{demo app}[http://github.com/neworganizing/rails_vip_demo]
+{Extension Pagamento Certo Gateway Spree} [http://ext.spreecommerce.com/extensions/34-pagamento-certo-gateway]
