@@ -9,16 +9,16 @@ class PagamentoCertoGatewayExtension < Spree::Extension
   # Please use pagamento_certo_gateway/config/routes.rb instead for extension routes.
 
   def self.require_gems(config)
-   config.gem "akitaonrails-lw-pagto-certo", :lib => 'lw-pagto-certo', :source => 'http://gems.github.com', :version => '>=0.0.5'
+   config.gem "akitaonrails-lw-pagto-certo", :lib => 'lw-pagto-certo', :source => 'http://gems.github.com', :version => '0.0.4'
    config.gem 'activerecord-tableless', :lib => 'tableless', :version => '>=0.1.0'
   end
 
   def activate
-    User.class_eval do 
-        attr_accessible :email, :password, :password_confirmation, :name, :cpf, :rg,  
+    User.class_eval do
+        attr_accessible :email, :password, :password_confirmation, :name, :cpf, :rg,
                         :razao_social, :person_type, :code_area,  :phone
     end
-    
+
     CheckoutsHelper.class_eval do
       alias :checkout_steps_alias :checkout_steps
       def checkout_steps
@@ -68,7 +68,4 @@ class PagamentoCertoGatewayExtension < Spree::Extension
 
   end
 end
-
-
-
 
