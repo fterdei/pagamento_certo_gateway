@@ -3,16 +3,16 @@
 * Extension para integração do {Spree}[http://spreecommerce.com] com o serviço Pagamento Certo da Locaweb
 
 
-== DESCRIÇÃO:
+== DESCRIÇÃO
 
 Modifica o processo de checkout para utilizar automaticamente o serviço Pagamento Certo.
 
-== REQUISITOS:
+== REQUISITOS
 
 * akitaonrails lw-pagto-certo --source=akitaonrails-lw-pagto-certo --source=http://gems.github.com
 * activerecord-tableless
 
-== INSTALAÇÃO:
+== INSTALAÇÃO
 
 Depois de baixar o Spree, execute o comando:
 
