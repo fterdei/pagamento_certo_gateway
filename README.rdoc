@@ -52,8 +52,8 @@ http://wiki.locaweb.com.br/pt-br/Informacoes_uteis_ao_vendedor
 == INSTALANDO COM O SPREE 0.8.x
 
 Entre no diretório vendor/extensions e faça um clone da extension pagamento-certo-gateway:
-$ git clone git://github.com/fterdei/pagamento_certo_gateway.git 
+  $ git clone git://github.com/fterdei/pagamento_certo_gateway.git 
 
 Crie um novo branch exatamente dessa forma:
-$ git checkout -b compatible-spree-0.8 origin/compatible-spree-0.8
+  $ git checkout -b compatible-spree-0.8 origin/compatible-spree-0.8
 
