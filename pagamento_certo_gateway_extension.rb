@@ -52,7 +52,8 @@ class PagamentoCertoGatewayExtension < Spree::Extension
          @pagamento_certo_builder = PagamentoCertoBuilder.new
          @lw = @pagamento_certo_builder.build(@order, url_for(:controller => "checkouts", :action => "close", :order => @order))
          consulta = @lw.inicia
-         redirect_to "https://www.pagamentocerto.com.br/pagamento/pagamento.aspx?tdi=#{consulta[:id_transacao]} "
+         raise consulta[:MensagemRetorno] unless consulta[:CodRetorno] == 0
+         redirect_to "https://www.pagamentocerto.com.br/pagamento/pagamento.aspx?tdi=#{consulta[:IdTransacao]} "
        end
 
        success.wants.js do
