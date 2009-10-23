@@ -9,7 +9,8 @@ Modifica o processo de checkout para utilizar automaticamente o serviço Pagamen
 
 == REQUISITOS:
 
-* akitaonrails lw-pagto-certo --source=akitaonrails-lw-pagto-certo --source=http://gems.github.com
+* soap4r versão 1.5.0 ou superior
+* akitaonrails lw-pagto-certo --source=http://gems.github.com
 * activerecord-tableless
 
 == INSTALAÇÃO:
